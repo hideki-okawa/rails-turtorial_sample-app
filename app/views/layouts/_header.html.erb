@@ -3,11 +3,11 @@
   <div class="container">
     <!--リンクの生成（Railsヘルパーのlink_to）-->
     <!--第一引数が表示上の名前、第二引数がリンク（今はダミー）-->
-    <%= link_to "sample app", '#', id: "logo" %>
+    <%= link_to "sample app", root_path, id: "logo" %>
     <nav>
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home",   '#' %></li>
-        <li><%= link_to "Help",   '#' %></li>
+        <li><%= link_to "Home",   root_path %></li>
+        <li><%= link_to "Help",   help_path %></li>
         <li><%= link_to "Log in", '#' %></li>
       </ul>
     </nav>
