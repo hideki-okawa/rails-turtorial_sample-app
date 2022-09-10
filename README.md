@@ -32,6 +32,7 @@ $ rails db:migrate
 
 ```
 $ rails test
+$ rails test:integration
 ```
 
 テストが無事に通ったら、Railsサーバーを立ち上げる準備が整っているはずです。
