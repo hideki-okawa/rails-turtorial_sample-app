@@ -23,5 +23,7 @@ class SessionsController < ApplicationController
   
   # DELETE /logout ログアウト機能
   def destroy
+    log_out
+    redirect_to root_url
   end
 end

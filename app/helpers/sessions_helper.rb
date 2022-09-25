@@ -18,4 +18,11 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
+  
+  # ログアウトする
+  def log_out
+    # セッションからユーザーIDを削除する
+    session.delete(:user_id)
+    @current_user = nil
+  end
 end
