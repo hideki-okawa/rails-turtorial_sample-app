@@ -53,6 +53,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     # ルートページにリダイレクトされていることを確認
     assert_redirected_to root_url
+    # 2番目のウィンドウでログアウトをクリックするユーザーをシミュレートする
+    delete logout_path
     # リダイレクトする
     follow_redirect!
     # ログインパスが存在することを確認する
@@ -75,5 +77,19 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     # 別のページでフラッシュが表示されないことを確認する
     get root_path
     assert flash.empty?
+  end
+  
+  test "login with remembering" do
+    log_in_as(@user, remember_me: '1')
+    assert_not_empty cookies[:remember_token]
+  end
+  
+  test "login without remembering" do
+    # cookieを保存してログイン
+    log_in_as(@user, remember_me: '1')
+    delete logout_path
+    # cookieを削除してログイン
+    log_in_as(@user, remember_me: '0')
+    assert_empty cookies[:remember_token]
   end
 end

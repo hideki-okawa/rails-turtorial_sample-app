@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # ログインする
       log_in user
+      # チェックボックスが付いていればユーザーのセッションを永続化
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # ログインユーザーのページにリダイレクトする
       redirect_to user
     else
@@ -23,7 +25,7 @@ class SessionsController < ApplicationController
   
   # DELETE /logout ログアウト機能
   def destroy
-    log_out
+    log_out if logged_in?
     redirect_to root_url
   end
 end
