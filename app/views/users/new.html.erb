@@ -3,10 +3,19 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    <!--Usersクラスのフォームの生成-->
+    <!--"/users"パスに対してpostリクエストする-->
+    <!--<form accept-charset="UTF-8" action="/users" class="new_user"-->
+    <!--  id="new_user" method="post">-->
     <%= form_with(model: @user, local: true) do |f| %>
+      <!--エラーがあった場合は表示する-->
       <%= render 'shared/error_messages' %>
 
+      <!--nameフィールドのラベルを生成-->
+      <!--<label for="user_name">Name</label>-->
       <%= f.label :name %>
+      <!--nameフィールドのテキストフィールドの生成-->
+      <!--<input id="user_name" name="user[name]" type="text" />-->
       <%= f.text_field :name, class: 'form-control' %>
 
       <%= f.label :email %>

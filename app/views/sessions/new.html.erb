@@ -1,0 +1,26 @@
+<% provide(:title, "Log in") %>
+<h1>Log in</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <!--"/login"パスに対してpostリクエストをする-->
+    <!--inputで導入する対象をscopeで指定する-->
+    <!--<form accept-charset="UTF-8" action="/login" method="post">-->
+    <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
+
+      <!--emailフィールドのラベルを生成-->
+      <!--<label for="session_email">Email</label>-->
+      <%= f.label :email %>
+      <!--emailフィールドのinputを生成-->
+      <!--<input class="form-control" id="session_email" name="session[email]" type="email" />-->
+      <%= f.email_field :email, class: 'form-control' %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password, class: 'form-control' %>
+
+      <%= f.submit "Log in", class: "btn btn-primary" %>
+    <% end %>
+
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+  </div>
+</div>
