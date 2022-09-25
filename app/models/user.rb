@@ -19,7 +19,7 @@ class User < ApplicationRecord
   # セキュアなパスワードの実装メソッド
   has_secure_password
   # passwordのバリデーション
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   # 渡された文字列のハッシュ値を返す
   def User.digest(string)

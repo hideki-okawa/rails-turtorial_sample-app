@@ -27,6 +27,23 @@ class UsersController < ApplicationController
     end
   end
   
+  # GET /users/:id/edit
+  # 編集画面にUserの情報を描画する
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  # PATCH /users/:id
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+  
   private
 
     # :user属性を必須、名前、メールアドレス、パスワード、パスワードの確認属性を許可
