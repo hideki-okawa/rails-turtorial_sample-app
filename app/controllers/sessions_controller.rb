@@ -12,8 +12,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # ログインする
       log_in user
-      # ユーザーのセッションを永続化
-      remember user
+      # チェックボックスが付いていればユーザーのセッションを永続化
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       # ログインユーザーのページにリダイレクトする
       redirect_to user
     else
