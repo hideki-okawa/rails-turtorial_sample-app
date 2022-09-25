@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # ログインする
       log_in user
+      # ユーザーのセッションを永続化
+      remember user
       # ログインユーザーのページにリダイレクトする
       redirect_to user
     else
