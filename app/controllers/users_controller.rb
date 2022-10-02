@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   # editとupdateの前に logged_in_user を実行しログインされていなければログインさせる
-  before_action :logged_in_user, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :edit, :update]
   # 別のユーザープロフィールを編集しようとしたらリダイレクトする
   before_action :correct_user,   only: [:edit, :update]
+  
+  # GET /users
+  def index
+    @users = User.all
+  end
   
   # GET /users/:id
   def show
