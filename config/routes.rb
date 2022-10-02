@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   
   # Usersリソースの全てのアクション
   resources :users
+  
+  resources :account_activations, only: [:edit]
 end
