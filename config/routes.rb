@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   # Usersリソースの全てのアクション
   resources :users
   
+  # アカウント有効用のリソースを追加
   resources :account_activations, only: [:edit]
   
   resources :password_resets,     only: [:new, :create, :edit, :update]
