@@ -16,6 +16,8 @@ class UsersController < ApplicationController
     # ユーザーを検索してインスタンス変数に詰める
     # @付きのインスタンス変数はviewで参照出来るなる
     @user = User.find(params[:id])
+    # paginateメソッド→マイクロソフトの関連付けを経由してmicropostsテーブルから必要な情報を取得してくれる
+    @microposts = @user.microposts.paginate(page: params[:page])
   end
   
   # GET /users/new
