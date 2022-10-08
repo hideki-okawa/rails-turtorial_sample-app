@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     # ユーザーを検索してインスタンス変数に詰める
     # @付きのインスタンス変数はviewで参照出来るなる
     @user = User.find(params[:id])
-    # paginateメソッド→マイクロソフトの関連付けを経由してmicropostsテーブルから必要な情報を取得してくれる
+    # paginateメソッド→関連付けを経由してmicropostsテーブルから情報を取得する
     @microposts = @user.microposts.paginate(page: params[:page])
   end
   
@@ -32,6 +32,7 @@ class UsersController < ApplicationController
       # 確認メールの送信
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
+      # ホームにリダイレクト
       redirect_to root_url
     else
       render 'new'

@@ -1,4 +1,5 @@
 class MicropostsController < ApplicationController
+  # createとdestroyを実行する前にログイン済みか確認する
   before_action :logged_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  # マイクロポストと1対多で紐づく
+  # ユーザーが削除されたときにマイクロポストも削除する
   has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   

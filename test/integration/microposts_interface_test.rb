@@ -23,8 +23,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to root_url
     follow_redirect!
-    pp "content", content
-    pp "body", response.body
     
     assert_match content, response.body
     # 投稿を削除する
