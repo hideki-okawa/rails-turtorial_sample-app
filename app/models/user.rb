@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  # マイクロポストと1対多で紐づく
+  # ユーザーが削除されたときにマイクロポストも削除する
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   
   # メールアドレスを小文字に変換する
@@ -83,6 +86,12 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
   
+  # 試作feedの定義
+  # 完全な実装は次章の「ユーザーをフォローする」を参照
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
   private
 
     # メールアドレスをすべて小文字にする
